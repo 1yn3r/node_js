@@ -1,14 +1,18 @@
 const Course = require("../models/Course");
-const { mutipleMongooseToObject } = require("../../util/mongoose");
+const {  mongoosesToObject } = require("../../util/mongoose");
 
 class CourseController {
 
 
   // [GET] /course/:slug
-  show(req, res) {
+  show(req, res, next) {
 
-    req.query.name
-    res.send("search");
+    Course.findOne({ slug: req.params.slug })
+      .then((course) => 
+        res.render("courses/show", { course:  mongoosesToObject(course) })
+      
+      )
+      .catch(next);
   }
 }
 
