@@ -6,6 +6,8 @@ class CourseController {
 
   // [GET] /course/:slug
   show(req, res) {
+
+    req.query.name
     res.send("search");
   }
 }
