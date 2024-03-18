@@ -22,12 +22,15 @@ create(req, res, next) {
 
 //POST /course/store
 store(req, res, next) {
-  const course = new Course(req.body);
+  const formData = req.body;
+  formData.image = `https://img.youtube.com/vi/${req.body.videoID}/sddefault.jpg`;
+  const course = new Course(formData);
   course.save()
     .then(() => res.redirect('/'))
     .catch(error => {
 
     });
+    
     
 }
 
